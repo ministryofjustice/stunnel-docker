@@ -25,4 +25,9 @@ ADD https://github.com/kelseyhightower/confd/releases/download/v0.9.0/confd-0.9.
 
 RUN chmod +x /usr/local/bin/confd
 
+# The home dir doesn't exsit but this shouldn't matter
+RUN adduser stunnel --home /home/stunnel --shell /bin/bash --disabled-password --gecos ""
+
+USER stunnel
+
 CMD ["./run.sh"]

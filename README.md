@@ -5,7 +5,8 @@ This container uses confd to read environment variables and render the stunnel c
 ## Build the container
 
 ```
-docker build -t ministryofjustice/stunnel .
+docker build -t our.registry-url:platforms/stunnel:1 .
+docker push our.registry-url:platforms/stunnel:1
 ```
 
 ## To Run

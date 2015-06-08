@@ -16,7 +16,6 @@ RUN apt-get update && \
   rm -rf /tmp/stunnel && \
   apt-get -y autoremove build-essential libssl-dev
 
-
 COPY stunnel.toml /etc/confd/conf.d/
 COPY stunnel.cnf.tmpl /etc/confd/templates/
 COPY run.sh $WORKDIR
@@ -26,4 +25,4 @@ ADD https://github.com/kelseyhightower/confd/releases/download/v0.9.0/confd-0.9.
 
 RUN chmod +x /usr/local/bin/confd
 
-CMD $WORKDIR/run.sh
+CMD ["./run.sh"]

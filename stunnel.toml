@@ -1,0 +1,9 @@
+[template]
+src = "stunnel.cnf.tmpl"
+dest = "/tmp/stunnel.cnf"
+keys = [
+  # When using env backend, look for any env var starting with STUNNEL_
+  # For instance STUNNEL_FOO=123 would be available in a confd template as '{{ getv "/stunnel/foo" }}'
+  # so STUNNEL_FOO_BAR would be "/stunnel/foo/bar"
+  "/stunnel",
+]

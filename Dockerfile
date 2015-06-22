@@ -23,7 +23,7 @@ COPY run.sh $WORKDIR
 RUN adduser stunnel --home /home/stunnel --shell /bin/bash --disabled-password --gecos ""
 
 # Since "ADD" with a URL invalidates the cache always put it at the end
-ADD https://github.com/kelseyhightower/confd/releases/download/v0.9.0/confd-0.9.0-linux-amd64 /usr/local/bin/confd
+ADD https://github.com/kelseyhightower/confd/releases/download/v0.10.0/confd-0.10.0-linux-amd64 /usr/local/bin/confd
 
 RUN chmod +x /usr/local/bin/confd
 

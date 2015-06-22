@@ -1,0 +1,6 @@
+[template]
+src = "cert.tmpl"
+dest = "/home/stunnel/cert.pem"
+keys = [
+  "/stunnel/ssl",
+]

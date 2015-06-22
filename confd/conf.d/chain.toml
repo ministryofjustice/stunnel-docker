@@ -1,0 +1,6 @@
+[template]
+src = "chain.tmpl"
+dest = "/home/stunnel/chain.pem"
+keys = [
+  "/stunnel/ssl",
+]

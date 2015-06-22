@@ -16,17 +16,16 @@ RUN apt-get update && \
   rm -rf /tmp/stunnel && \
   apt-get -y autoremove build-essential libssl-dev
 
-COPY stunnel.toml /etc/confd/conf.d/
-COPY stunnel.cnf.tmpl /etc/confd/templates/
+# Copy in confd templates and config files
+COPY confd /etc/confd
 COPY run.sh $WORKDIR
+
+RUN adduser stunnel --home /home/stunnel --shell /bin/bash --disabled-password --gecos ""
 
 # Since "ADD" with a URL invalidates the cache always put it at the end
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.9.0/confd-0.9.0-linux-amd64 /usr/local/bin/confd
 
 RUN chmod +x /usr/local/bin/confd
-
-# The home dir doesn't exsit but this shouldn't matter
-RUN adduser stunnel --home /home/stunnel --shell /bin/bash --disabled-password --gecos ""
 
 USER stunnel
 

@@ -29,10 +29,16 @@ prefixed with `STUNNEL_` - for example `STUNNEL_LOGSTASH` or `STUNNEL_HTTPS`.
 The value for each of these should be a JSON object that defines the config
 section for the service.
 
-For example
+For example (line wrapped for **display only**. This should be on one line when you use it)
 
 ```
-STUNNEL_LOGSTASH={"accept": 6739, "connect": 1234, "verify": 2, "cert":"/tmp/cert.pem", "key":"/tmp/key.pem", "CAfile": "/tmp/ca-chain.pem"}
+STUNNEL_LOGSTASH={
+  "accept": 6739, 
+  "connect": 1234, 
+  "verify": 2,
+  "cert":"/tmp/cert.pem",
+  "key":"/tmp/key.pem",
+  "CAfile": "/tmp/ca-chain.pem"}
 ```
 
 Would render this config file:
@@ -50,6 +56,10 @@ key=/tmp/key.pem
 verify=2
 ```
 
-Read the [stunnel docs][stunnel_docs] for the possible config keys
+Read the [stunnel docs][stunnel_docs] for the possible config keys. A quick run down the options we are likely to change:
+
+- `accept`: ("[\<host>:]\<port>") Listen for connection on this local port.
+- `connect`: ("[\<host>:]\<port>") And send it to here. If we are a server, this is in the clear; if a client then this is another stunnel instance. 
+- `client`: ("yes" or "no". Default "no") Make this service act as a client and accept clear and forward to another stunnel server
 
 [stunnel_docs]: https://www.stunnel.org/static/stunnel.html#SERVICE-LEVEL-OPTIONS

@@ -2,7 +2,7 @@ FROM debian:jessie
 
 WORKDIR /
 
-ENV stunnel_version 5.19
+ENV stunnel_version 5.22
 
 # The packaged version of stunnel isn't recent enough for our tastes, so lets
 # build it ourselves and remove the dev packages once we are done

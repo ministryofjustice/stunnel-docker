@@ -1,4 +1,5 @@
 [template]
+mode = "0600"
 src = "cert.tmpl"
 dest = "/home/stunnel/cert.pem"
 keys = [

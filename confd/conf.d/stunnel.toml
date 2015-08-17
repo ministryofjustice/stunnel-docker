@@ -1,4 +1,5 @@
 [template]
+mode = "0600"
 src = "stunnel.cnf.tmpl"
 dest = "/home/stunnel/stunnel.cnf"
 keys = [

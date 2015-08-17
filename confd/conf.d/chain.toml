@@ -1,4 +1,5 @@
 [template]
+mode = "0600"
 src = "chain.tmpl"
 dest = "/home/stunnel/chain.pem"
 keys = [

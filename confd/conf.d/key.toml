@@ -1,4 +1,5 @@
 [template]
+mode = "0600"
 src = "key.tmpl"
 dest = "/home/stunnel/key.pem"
 keys = [

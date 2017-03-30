@@ -26,7 +26,5 @@ RUN adduser stunnel --home /home/stunnel --shell /bin/bash --disabled-password -
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.10.0/confd-0.10.0-linux-amd64 /usr/local/bin/confd
 
 RUN chmod +x /usr/local/bin/confd
-
 USER stunnel
-
 CMD ["./run.sh"]

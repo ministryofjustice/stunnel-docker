@@ -7,4 +7,6 @@ keys = [
   # For instance STUNNEL_FOO=123 would be available in a confd template as '{{ getv "/stunnel/foo" }}'
   # so STUNNEL_FOO_BAR would be "/stunnel/foo/bar"
   "/stunnel/service/",
+  "/stunnel/ssl",
+  "/stunnel/psk/",
 ]

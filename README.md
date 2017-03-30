@@ -13,9 +13,36 @@ docker build --pull -t our.registry-url:platforms/stunnel:1 .
 docker push our.registry-url:platforms/stunnel:1
 ```
 
-## To Run
+## Running Stunnel
 
-We want the SSL certificate info in a json document with keys of `cert`, `key`, and `chain`. This simple snippet will do that for you. (You'll need to create the refered to PEM files.)
+Stunnel can authenticate using either pre-shared keys (PSK) or ssl certificates.
+Only one should be enabled at a time, otherwise certificate validation will take precedence.
+See [https://www.stunnel.org/auth.html](https://www.stunnel.org/auth.html)
+
+### Using PSK authentication
+
+Keys are passed in using the environment variables `STUNNEL_PSK_*`. For example, the following will set three PSK keys,
+
+```
+docker run \
+    -e STUNNEL_PSK_1={"one": "ilWilpyeuFroajpanbenkyeo"} \
+    -e STUNNEL_PSK_2={"two": "PlorrekCiphNoheHyecJejLu"} \
+    -e STUNNEL_PSK_3={"three": "shmooshuckWejIrEticyoams"} \
+    stunnel
+```
+
+generating a psk.txt file for stunnel of,
+
+```
+one:ilWilpyeuFroajpanbenkyeo
+two:PlorrekCiphNoheHyecJejLu
+three:shmooshuckWejIrEticyoams
+```
+
+### Using SSL authentication
+
+To use SSL authentication we format the certificate info in a json document with keys of `cert`, `key`, and `chain`. 
+This simple snippet will do that for you. (You'll need to create the refered to PEM files.)
 
 ```
 export STUNNEL_SSL="$(echo '{}' | jq -c \
@@ -25,15 +52,13 @@ export STUNNEL_SSL="$(echo '{}' | jq -c \
   '.cert = $cert | .chain = $chain | .key = $key')"
 ```
 
-And then run the container passing that environment variable we just created:
+And then run the container passing that environment variable we just created on the command line or through an env file.
 
 ```
 docker run --rm -ti \
   --env-file env.example -e "STUNNEL_SSL=$STUNNEL_SSL" \
   --expose 6379  ministryofjustice/stunnel
 ```
-
-But don't do it this way - it's just for testing - you should put the STUNNEL_SSL in the file you pass to `--env-file`
 
 ## To configure
 

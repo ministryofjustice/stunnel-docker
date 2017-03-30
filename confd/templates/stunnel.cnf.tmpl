@@ -1,15 +1,15 @@
 foreground = yes
 syslog = no
 debug=4
-
 sslVersion=TLSv1.2
-ciphers=ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!EDH:!AESGCM
-
 {{range gets "/stunnel/service/*"}}
 [{{base .Key}}]
+{{ if ls "/stunnel/psk" }}PSKsecrets=/home/stunnel/psk.txt
+ciphers=PSK{{ end }}
+{{ if exists "/stunnel/ssl" }}ciphers=ECDHE-RSA-AES256-SHA384:AES256-SHA256:RC4:HIGH:!MD5:!aNULL:!EDH:!AESGCM
 CAfile=/home/stunnel/chain.pem
 cert=/home/stunnel/cert.pem
-key=/home/stunnel/key.pem
+key=/home/stunnel/key.pem{{ end }}
 {{range $key,$value := json .Value}}
 {{$key}}={{$value}}{{end}}
 {{end}}

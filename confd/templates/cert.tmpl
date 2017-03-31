@@ -1,1 +1,3 @@
+{{ if exists "/stunnel/ssl" }}
 {{ $json := json (getv "/stunnel/ssl") }}{{ $json.cert }}
+{{ end }}
